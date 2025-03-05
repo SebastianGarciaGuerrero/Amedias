@@ -5,7 +5,6 @@ import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 import Profile from './pages/Profile'
 
-
 const App = () => {
   return (
     <div>

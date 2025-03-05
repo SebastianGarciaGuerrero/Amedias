@@ -1,160 +1,27 @@
+/* index.css */
 @import "tailwindcss";
 
 :root {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --primary-color: #1f1f1f;
+  --secondary-color: #272727;
+  --accent-color: #4a90e2;
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+  color: var(--text-color);
+  background-color: var(--bg-color);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Asegúrate de que no haya estilos conflictivos */
+body {
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-/* Estilos generales */
-.app2-container {
-  max-width: 800px; /* Ancho máximo para el contenido */
-  margin: 0 auto; /* Centrar horizontalmente */
-  padding: 20px; /* Espaciado interno */
-  text-align: center; /* Centrar texto */
-}
-
-/* Estilos para el título */
-.app2-container h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
-  color: #646cff; /* Color del título */
-}
-
-/* Estilos para el contenedor del chat */
-.chat-container {
-  background-color: #1a1a1a; /* Fondo oscuro */
-  border-radius: 10px; /* Bordes redondeados */
-  padding: 20px; /* Espaciado interno */
-  margin-bottom: 20px; /* Espacio debajo del chat */
-  max-height: 400px; /* Altura máxima */
-  overflow-y: auto; /* Scroll vertical si hay muchos gastos */
-}
-
-/* Estilos para cada mensaje del chat */
-.chat-message {
-  background-color: #2a2a2a; /* Fondo oscuro para los mensajes */
-  border-radius: 10px; /* Bordes redondeados */
-  padding: 10px; /* Espaciado interno */
-  margin-bottom: 10px; /* Espacio entre mensajes */
-  text-align: left; /* Alinear texto a la izquierda */
-}
-
-.chat-message strong {
-  color: #646cff; /* Color para el nombre del usuario */
-}
-
-/* Estilos para el formulario */
-.expense-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* Espacio entre elementos del formulario */
-  margin-bottom: 20px; /* Espacio debajo del formulario */
-}
-
-.expense-form input,
-.expense-form select {
-  padding: 10px; /* Espaciado interno */
-  border-radius: 8px; /* Bordes redondeados */
-  border: 1px solid #646cff; /* Borde con color */
-  background-color: #1a1a1a; /* Fondo oscuro */
-  color: rgba(255, 255, 255, 0.87); /* Color del texto */
-}
-
-.expense-form button {
-  background-color: #646cff; /* Color del botón */
-  color: white; /* Color del texto del botón */
-  border: none; /* Sin borde */
-  padding: 10px; /* Espaciado interno */
-  border-radius: 8px; /* Bordes redondeados */
-  cursor: pointer; /* Cambiar cursor al pasar el mouse */
-}
-
-.expense-form button:hover {
-  background-color: #535bf2; /* Color del botón al pasar el mouse */
-}
-
-/* Estilos para el resumen de deudas */
-.debt-summary {
-  background-color: #1a1a1a; /* Fondo oscuro */
-  border-radius: 10px; /* Bordes redondeados */
-  padding: 20px; /* Espaciado interno */
-}
-
-.debt-summary h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-  color: #646cff; /* Color del título */
-}
-
-.debt-summary p {
-  margin: 5px 0; /* Espacio entre párrafos */
-}
-
-.debt-summary span {
-  font-weight: bold;
-}
-
-/* Colores para los saldos */
-.debt-summary .positive {
-  color: green; /* Saldo a favor */
-}
-
-.debt-summary .negative {
-  color: red; /* Saldo en contra */
+/* Si usas un contenedor principal, asegúrate de que no tenga estilos conflictivos */
+.main-container {
+  margin: 0;
+  padding: 0;
 }

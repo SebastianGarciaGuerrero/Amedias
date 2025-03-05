@@ -13,15 +13,19 @@ function Home() {
   };
 
   return (
-    <div className="app2-container">
-      <h2>Gastos Compartidos</h2>
-      <div className="chat-container">
-        {gastos.map((gasto, index) => (
-          <ChatMessage key={index} gasto={gasto} />
-        ))}
+    <div className="flex items-center justify-center h-screen bg-gray-900">
+      <div className="w-full max-w-2xl p-6 bg-gray-800 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold mb-4 text-center text-white">
+          Gastos Compartidos
+        </h2>
+        <div className="chat-container space-y-4 mb-6">
+          {gastos.map((gasto, index) => (
+            <ChatMessage key={index} gasto={gasto} />
+          ))}
+        </div>
+        <ExpenseForm onAgregarGasto={handleAgregarGasto} />
+        <DebtSummary deudas={deudas} />
       </div>
-      <ExpenseForm onAgregarGasto={handleAgregarGasto} />
-      <DebtSummary deudas={deudas} />
     </div>
   );
 }

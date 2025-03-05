@@ -1,4 +1,3 @@
-// src/context/AmediasContext.jsx
 import { createContext, useReducer } from "react";
 
 export const amediasContext = createContext();
@@ -14,24 +13,31 @@ function amediasReducer(state, action) {
       const nuevoGasto = action.payload;
       const nuevosGastos = [...state.gastos, nuevoGasto];
 
-      // Calcular deudas
+      // Calcular total de gastos
       const totalGastos = nuevosGastos.reduce((sum, gasto) => sum + gasto.monto, 0);
-      const deudaPorPersona = totalGastos / 2;
 
-      const deudaUsuario1 = nuevosGastos
+      // Calcular cuánto ha gastado cada usuario
+      const gastosUsuario1 = nuevosGastos
         .filter((gasto) => gasto.quienPago === "usuario1")
         .reduce((sum, gasto) => sum + gasto.monto, 0);
 
-      const deudaUsuario2 = nuevosGastos
+      const gastosUsuario2 = nuevosGastos
         .filter((gasto) => gasto.quienPago === "usuario2")
         .reduce((sum, gasto) => sum + gasto.monto, 0);
+
+      // Calcular cuánto debería haber gastado cada usuario
+      const deudaPorPersona = totalGastos / 2;
+
+      // Calcular deudas finales
+      const deudaUsuario1 = deudaPorPersona - gastosUsuario1;
+      const deudaUsuario2 = deudaPorPersona - gastosUsuario2;
 
       return {
         ...state,
         gastos: nuevosGastos,
         deudas: {
-          usuario1: deudaPorPersona - deudaUsuario1,
-          usuario2: deudaPorPersona - deudaUsuario2,
+          usuario1: deudaUsuario1,
+          usuario2: deudaUsuario2,
         },
       };
     }

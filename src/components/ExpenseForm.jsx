@@ -1,9 +1,7 @@
-// src/components/ExpenseForm.jsx
 import React, { useState } from "react";
-import { useAmedias } from "../hooks/useAmedias"; // Importa el hook personalizado
+import { Input, Button } from "@chakra-ui/react";
 
-const ExpenseForm = () => {
-  const { dispatch } = useAmedias(); // Accede a dispatch
+const ExpenseForm = ({ onAgregarGasto }) => {
   const [monto, setMonto] = useState("");
   const [description, setDescription] = useState("");
   const [quienPago, setQuienPago] = useState("usuario1");
@@ -11,53 +9,57 @@ const ExpenseForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validar que los campos no estén vacíos
     if (!monto || !description || !quienPago) {
       alert("Por favor, completa todos los campos.");
       return;
     }
 
-    // Enviar la acción AGREGAR_GASTO al reducer
-    dispatch({
-      type: "AGREGAR_GASTO",
-      payload: {
-        monto: parseInt(monto, 10), // Convertir el monto a número entero
-        description,
-        quienPago,
-      },
+    onAgregarGasto({
+      monto: parseInt(monto, 10),
+      description,
+      quienPago,
     });
 
-    // Limpiar el formulario después de enviar
     setMonto("");
     setDescription("");
-    setQuienPago("usuario1"); // Reiniciar el select
+    setQuienPago("usuario1");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="number"
-        placeholder="Monto"
-        value={monto}
-        onChange={(e) => setMonto(e.target.value)}
-        required // Campo obligatorio
-      />
-      <input
-        type="text"
-        placeholder="Descripción"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        required // Campo obligatorio
-      />
-      <select
-        value={quienPago}
-        onChange={(e) => setQuienPago(e.target.value)}
-        required // Campo obligatorio
+    <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+      <div className="flex flex-col space-y-2">
+        <Input
+          type="number"
+          placeholder="Monto"
+          value={monto}
+          onChange={(e) => setMonto(e.target.value)}
+          className="p-2 border border-gray-300 rounded-lg"
+          required
+        />
+        <Input
+          type="text"
+          placeholder="Descripción"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="p-2 border border-gray-300 rounded-lg"
+          required
+        />
+        <select
+          value={quienPago}
+          onChange={(e) => setQuienPago(e.target.value)}
+          className="p-2 border border-gray-300 rounded-lg"
+          required
+        >
+          <option value="usuario1">Yo</option>
+          <option value="usuario2">Mi pareja</option>
+        </select>
+      </div>
+      <Button
+        type="submit"
+        className="self-end bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
       >
-        <option value="usuario1">Yo</option>
-        <option value="usuario2">Mi pareja</option>
-      </select>
-      <button type="submit">Agregar gasto</button>
+        Agregar gasto
+      </Button>
     </form>
   );
 };
