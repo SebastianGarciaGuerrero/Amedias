@@ -1,30 +1,22 @@
-// src/pages/App2.js
-import { useAmedias } from "./hooks/useAmedias";
-import ChatMessage from "./components/ChatMessage";
-import ExpenseForm from "./components/ExpenseForm";
-import DebtSummary from "./components/DebtSummary";
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Navbar from './components/navbar/Navbar'
+import Home from './pages/Home'
+import SignIn from './pages/SignIn'
+import Profile from './pages/Profile'
 
-function App() {
-  const { state, dispatch } = useAmedias();
-  const { gastos, deudas } = state;
 
-  const handleAgregarGasto = (gasto) => {
-    dispatch({ type: "AGREGAR_GASTO", payload: gasto });
-    dispatch({ type: "CALCULAR_DEUDAS" });
-  };
-
+const App = () => {
   return (
-    <div className="app2-container">
-      <h2>Gastos Compartidos</h2>
-      <div className="chat-container">
-        {gastos.map((gasto, index) => (
-          <ChatMessage key={index} gasto={gasto} />
-        ))}
-      </div>
-      <ExpenseForm onAgregarGasto={handleAgregarGasto} />
-      <DebtSummary deudas={deudas} />
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/Signin' element={<SignIn />} />
+        <Route path='/Profile' element={<Profile />} />
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
