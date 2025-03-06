@@ -75,7 +75,7 @@ const ExpenseForm = ({ onAgregarGasto }) => {
         <select
           value={quienPago}
           onChange={(e) => setQuienPago(e.target.value)}
-          className="p-2 border border-gray-300 rounded-lg text-gray-800"
+          className="p-2 border border-gray-300 rounded-lg text-black"
           required
         >
           <option value="usuario1">Yo</option>

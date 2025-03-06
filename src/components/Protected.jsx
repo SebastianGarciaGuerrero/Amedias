@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
-import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-const Profile = () => {
-  const { logOut, user } = UserAuth();
+const Protected = ({ children }) => {
+  const { user } = UserAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true); // Estado para manejar la carga
 
@@ -16,27 +15,11 @@ const Profile = () => {
     }
   }, [user, navigate]);
 
-  const handleSignOut = async () => {
-    try {
-      await logOut();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   if (loading) {
     return <p>Cargando...</p>; // Muestra un mensaje de carga
   }
 
-  return (
-    <div className="flex items-center justify-center h-screen bg-gray-900">
-      <h1>Perfil</h1>
-      <div>
-        <p>Bienvenido, {user?.displayName}</p>
-      </div>
-      <Button onClick={handleSignOut}>Log Out</Button>
-    </div>
-  );
+  return children; // Renderiza el contenido protegido
 };
 
-export default Profile;
+export default Protected;

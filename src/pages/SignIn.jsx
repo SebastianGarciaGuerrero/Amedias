@@ -1,29 +1,44 @@
-import React from "react";
-import { Container, Input } from "@chakra-ui/react";
-import { Field } from "@/components/ui/field";
-import { Button, ButtonGroup } from "@chakra-ui/react"
+import React, { useEffect, useState } from "react";
+import { GoogleButton } from "react-google-button";
+import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { Input } from "@chakra-ui/react";
 
 const SignIn = () => {
+  const { googleSignIn, user } = UserAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true); // Estado para manejar la carga
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/profile"); // Redirige solo si el usuario está autenticado
+    } else {
+      setLoading(false); // Si no hay usuario, detén la carga
+    }
+  }, [user, navigate]);
+
+  if (loading) {
+    return <p>Cargando...</p>; // Muestra un mensaje de carga
+  }
+
   return (
-    <Container>
-      <h1>Registo</h1>
-      <div>
-        <Input type="text" placeholder="Nombre" variant="flushed"></Input>
-        <Field
-          label="Email"
-          required
-          helperText="We'll never share your email."
-        >
-          <Input placeholder="Enter your email" />
-        </Field>
-        <Input
-          type="password"
-          placeholder="Contraseña"
-          variant="flushed"
-        ></Input>
+    <div className="flex items-center justify-center h-screen bg-gray-900">
+      <h1>Registro</h1>
+      <div className="mt-16">
+        <Input type="text" placeholder="Nombre" />
+        <Input type="email" placeholder="Email" />
+        <Input type="password" placeholder="Contraseña" />
       </div>
-      <Button>Click me</Button>
-    </Container>
+      <GoogleButton onClick={handleGoogleSignIn} />
+    </div>
   );
 };
 
