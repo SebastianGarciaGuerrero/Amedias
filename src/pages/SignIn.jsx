@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { GoogleButton } from "react-google-button";
 import { UserAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { Input } from "@chakra-ui/react";
 
 const SignIn = () => {
   const { googleSignIn, user } = UserAuth();
@@ -30,14 +29,25 @@ const SignIn = () => {
   }
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-900">
-      <h1>Registro</h1>
-      <div className="mt-16">
-        <Input type="text" placeholder="Nombre" />
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Contraseña" />
+    <div className="flex items-center justify-center h-screen bg-gray-900 ">
+      <div className="mt-16 grid grid-cols-1 grid-rows-3 space-y-4 border shadow-lg rounded-lg p-6">
+        <h1 className="flex justify-center text-2xl">¡Hola!</h1>
+        <p className="text-gray-600 text-sm">¡Bienvenido de vuelta!</p>
+        <input placeholder="Email" />
+        <input placeholder="Contraseña" type="password" />
+        <button>Ingresar</button>
+        <div className="grid grid-cols-2">
+          <p className="hover:text-blue-500 cursor-pointer">
+            ¿Olvidaste tu contraseña?
+          </p>
+        </div>
+        <p className="flex text-gray-600 text-sm justify-center">
+          O continua con
+        </p>
+        <div className="flex justify-center">
+          <GoogleButton onClick={handleGoogleSignIn} />
+        </div>
       </div>
-      <GoogleButton onClick={handleGoogleSignIn} />
     </div>
   );
 };

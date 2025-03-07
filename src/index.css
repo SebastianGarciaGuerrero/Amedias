@@ -1,5 +1,9 @@
 /* index.css */
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 :root {
   --bg-color: #121212;
@@ -25,3 +29,5 @@ body {
   margin: 0;
   padding: 0;
 }
+
+
