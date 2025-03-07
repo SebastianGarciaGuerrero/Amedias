@@ -13,12 +13,15 @@ const ExpenseForm = ({ onAgregarGasto }) => {
     // Eliminar todos los caracteres que no sean números
     const soloNumeros = valor.replace(/\D/g, "");
 
-    // Convertir a número y formatear como CLP
+    // Convertir a número
     const numero = parseInt(soloNumeros, 10);
     if (isNaN(numero)) return ""; // Si no es un número, devolver vacío
 
+    // Redondear el número
+    const numeroRedondeado = Math.round(numero);
+
     // Formatear con separadores de miles y agregar el signo de peso
-    return `$${numero.toLocaleString("es-CL")}`;
+    return `$${numeroRedondeado.toLocaleString("es-CL")}`;
   };
 
   // Manejar cambios en el input de monto
@@ -61,7 +64,7 @@ const ExpenseForm = ({ onAgregarGasto }) => {
           placeholder="Monto"
           value={montoFormateado}
           onChange={handleMontoChange}
-          className="p-2 border border-gray-300 rounded-lg text-gray-800"
+          className="p-2 border border-gray-300 rounded-lg"
           required
         />
         <input
@@ -69,22 +72,26 @@ const ExpenseForm = ({ onAgregarGasto }) => {
           placeholder="Descripción"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="p-2 border border-gray-300 rounded-lg text-gray-800"
+          className="p-2 border border-gray-300 rounded-lg"
           required
         />
         <select
           value={quienPago}
           onChange={(e) => setQuienPago(e.target.value)}
-          className="p-2 border border-gray-300 rounded-lg text-black"
+          className="p-2 border border-gray-300 rounded-lg"
           required
         >
-          <option value="usuario1">Yo</option>
-          <option value="usuario2">Mi pareja</option>
+          <option value="usuario1" className="bg-gray-500">
+            zeva
+          </option>
+          <option value="usuario2" className="bg-gray-500">
+            Pao
+          </option>
         </select>
       </div>
       <button
         type="submit"
-        className="self-end bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors"
+        className="self-end bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-800 transition-colors"
       >
         Agregar gasto
       </button>

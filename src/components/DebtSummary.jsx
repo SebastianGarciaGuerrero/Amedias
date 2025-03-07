@@ -4,23 +4,29 @@ import { useAmedias } from "../hooks/useAmedias";
 const DebtSummary = () => {
   const { state } = useAmedias();
 
-  // Formatea los montos como CLP (con separadores de miles)
-  const deudaUsuario1Formateada = Math.abs(state.deudas.usuario1).toLocaleString("es-CL");
-  const deudaUsuario2Formateada = Math.abs(state.deudas.usuario2).toLocaleString("es-CL");
+  // Función para redondear y formatear como CLP
+  const formatearMonto = (monto) => {
+    const montoRedondeado = Math.round(monto); // Redondear al entero más cercano
+    return `$${montoRedondeado.toLocaleString("es-CL")}`; // Formatear como CLP
+  };
+
+  // Formatea los montos como CLP (con separadores de miles y sin decimales)
+  const deudaUsuario1Formateada = formatearMonto(Math.abs(state.deudas.usuario1));
+  const deudaUsuario2Formateada = formatearMonto(Math.abs(state.deudas.usuario2));
 
   return (
     <div className="mt-6 p-4 bg-gray-700 rounded-lg text-white">
       <h2 className="text-xl font-bold mb-2">Resumen de Deudas</h2>
       {state.deudas.usuario1 > 0 && (
         <p>
-          Usuario 1 le debe:{" "}
-          <span style={{ color: "red" }}>${deudaUsuario1Formateada}</span> a Usuario 2.
+          zeva le debe:{" "}
+          <span style={{ color: "red" }}>{deudaUsuario1Formateada}</span> a Pao.
         </p>
       )}
       {state.deudas.usuario2 > 0 && (
         <p>
-          Usuario 2 le debe:{" "}
-          <span style={{ color: "red" }}>${deudaUsuario2Formateada}</span> a Usuario 1.
+          Pao le debe:{" "}
+          <span style={{ color: "green" }}>{deudaUsuario2Formateada}</span> a zeva.
         </p>
       )}
       {state.deudas.usuario1 === 0 && state.deudas.usuario2 === 0 && (
