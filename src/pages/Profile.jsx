@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
-import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
@@ -34,7 +33,7 @@ const Profile = () => {
       <div>
         <p>Bienvenido, {user?.displayName}</p>
       </div>
-      <Button onClick={handleSignOut}>Log Out</Button>
+      <button onClick={handleSignOut}>Log Out</button>
     </div>
   );
 };

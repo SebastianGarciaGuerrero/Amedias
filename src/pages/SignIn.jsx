@@ -57,7 +57,7 @@ const SignIn = () => {
               name="recordar"
               value="recordar"
             />
-            <label for="recordar">Recordarme</label>
+            <label htmlFor="recordar">Recordarme</label>
           </div>
           <p className="hover:text-blue-500 cursor-pointer">
             ¿Olvidaste tu contraseña?

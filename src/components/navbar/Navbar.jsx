@@ -32,6 +32,9 @@ const Navbar = () => {
         <Link to="/contacto" className="hover:text-blue-400 transition-colors">
           Contacto
         </Link>
+        <Link to="/Profile" className="hover:text-blue-400 transition-colors">
+          Perfil
+        </Link>
       </div>
     </nav>
   );
