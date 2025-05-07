@@ -1,0 +1,31 @@
+/* index.css */
+@import "tailwindcss";
+@tailwind utilities;
+
+
+:root {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --primary-color: #1f1f1f;
+  --secondary-color: #272727;
+  --accent-color: #4a90e2;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color-scheme: dark;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/* Asegúrate de que no haya estilos conflictivos */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Si usas un contenedor principal, asegúrate de que no tenga estilos conflictivos */
+.main-container {
+  margin: 0;
+  padding: 0;
+}
+
+
