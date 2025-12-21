@@ -15,6 +15,9 @@ app.use(express.json());
 
 // Rutas
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/messages', require('./routes/messageRoutes'));
+app.use('/api/groups', require('./routes/groupRoutes'));
 
 app.get('/', (req, res) => {
     res.send('API de Amedias funcionando 🚀');

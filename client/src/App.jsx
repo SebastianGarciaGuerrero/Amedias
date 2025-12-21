@@ -1,32 +1,25 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/navbar/Navbar";
-import Home from "./pages/Home";
-import SignIn from "./pages/SignIn";
-import Profile from "./pages/Profile";
-import { AuthContextProvider } from "./context/AuthContext";
-import Protected from "./components/Protected";
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Chat from './pages/Chat';
+import Dashboard from './pages/Dashboard'; // <--- Importamos
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <AuthContextProvider>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Signin" element={<SignIn />} />
-          <Route
-            path="/Profile"
-            element={
-              <Protected>
-                <Profile />
-              </Protected>
-            }
-          />
-        </Routes>
-      </AuthContextProvider>
-    </div>
+    <Routes>
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+
+      {/* Nueva Ruta Dashboard */}
+      <Route path="/dashboard" element={<Dashboard />} />
+
+      {/* Ruta Chat Dinámica: Ahora espera un groupId */}
+      <Route path="/chat/:groupId" element={<Chat />} />
+
+      {/* Redirección por defecto */}
+      <Route path="/" element={<Navigate to="/login" />} />
+    </Routes>
   );
-};
+}
 
 export default App;
