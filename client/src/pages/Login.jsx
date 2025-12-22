@@ -23,7 +23,7 @@ const Login = () => {
         e.preventDefault();
         try {
             // Petición al endpoint de LOGIN
-            const response = await axios.post('http://localhost:4000/api/users/login', formData);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, formData);
 
             if (response.data) {
                 // Guardamos el token igual que en el registro

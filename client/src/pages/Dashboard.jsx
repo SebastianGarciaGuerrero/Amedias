@@ -27,7 +27,7 @@ const Dashboard = () => {
     const fetchGroups = async (token) => {
         try {
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const response = await axios.get('http://localhost:4000/api/groups', config);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/groups`, config);
             setGroups(response.data);
         } catch (error) {
             console.error("Error cargando grupos", error);
@@ -38,7 +38,7 @@ const Dashboard = () => {
         e.preventDefault();
         try {
             const config = { headers: { Authorization: `Bearer ${currentUser.token}` } };
-            const response = await axios.post('http://localhost:4000/api/groups', { name: newGroupName }, config);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/groups`, { name: newGroupName }, config);
 
             setGroups([...groups, response.data]);
             setNewGroupName('');
@@ -52,7 +52,7 @@ const Dashboard = () => {
         e.preventDefault();
         try {
             const config = { headers: { Authorization: `Bearer ${currentUser.token}` } };
-            const response = await axios.post('http://localhost:4000/api/groups/join', { code: joinCode.toUpperCase() }, config);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/groups/join`, { code: joinCode.toUpperCase() }, config);
 
             setGroups([...groups, response.data]);
             setJoinCode('');
@@ -122,8 +122,8 @@ const Dashboard = () => {
                             <button
                                 onClick={(e) => copyToClipboard(e, group.code, group._id)}
                                 className={`p-2 rounded-md transition-all duration-200 ${copiedId === group._id
-                                        ? "bg-green-600 text-white"
-                                        : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white"
+                                    ? "bg-green-600 text-white"
+                                    : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white"
                                     }`}
                                 title="Copiar código"
                             >

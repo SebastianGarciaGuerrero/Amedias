@@ -44,7 +44,8 @@ const Chat = () => {
         try {
             const config = { headers: { Authorization: `Bearer ${token}` } };
             // AQUI CAMBIA: Pedimos mensajes DEL GRUPO específico
-            const response = await axios.get(`http://localhost:4000/api/messages/${groupId}`, config);
+            // Fíjate que hay dos signos $ ahora: uno para la URL base y otro para el ID
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/messages/${groupId}`, config);
             setMessages(response.data);
         } catch (error) {
             console.error("Error cargando mensajes", error);
@@ -91,7 +92,7 @@ const Chat = () => {
 
             const finalText = isPayment ? `💸 Realizó un pago de deuda` : text;
 
-            const response = await axios.post('http://localhost:4000/api/messages', {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/messages`, {
                 text: finalText,
                 amount: amount || 0,
                 isPayment: isPayment,
@@ -169,8 +170,8 @@ const Chat = () => {
                         <div key={msg._id} className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}>
                             {/* ... Pega el interior de tus burbujas de chat aquí ... */}
                             <div className={`max-w-[85%] p-3 rounded-2xl shadow-md ${isPayment
-                                    ? 'bg-yellow-600/20 border border-yellow-500 text-yellow-100'
-                                    : (isMe ? 'bg-blue-600 text-white rounded-br-none' : 'bg-gray-700 text-gray-200 rounded-bl-none')
+                                ? 'bg-yellow-600/20 border border-yellow-500 text-yellow-100'
+                                : (isMe ? 'bg-blue-600 text-white rounded-br-none' : 'bg-gray-700 text-gray-200 rounded-bl-none')
                                 }`}>
                                 <p className={`text-sm ${isPayment ? 'font-bold italic' : ''}`}>{msg.text}</p>
                                 {msg.amount > 0 && (

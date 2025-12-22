@@ -24,7 +24,7 @@ const Register = () => {
         e.preventDefault();
         try {
             // 1. Hacemos la petición al servidor (Asegúrate que el puerto 4000 sea el correcto)
-            const response = await axios.post('http://localhost:4000/api/users/register', formData);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`, formData);
 
             // 2. Si todo sale bien, guardamos el "Carnet" (Token) en el navegador
             // Esto soluciona tu problema de que "se pierden los datos al recargar"
