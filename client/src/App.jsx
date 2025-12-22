@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Chat from './pages/Chat';
-import Dashboard from './pages/Dashboard'; // <--- Importamos
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
